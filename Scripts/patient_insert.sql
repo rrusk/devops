@@ -2194,3 +2194,111 @@ VALUES
  '2013-09-26','2013-09-26 00:00:00','A','585','icd9',0,NULL);
 -- Adding billing to oscardoc
 update provider set ohip_no='123456' where provider_no='999998';
+
+-- 11
+INSERT INTO `demographic`
+(
+ title, last_name, first_name, address, city, province, postal, phone, phone2,
+ email, myOscarUserName, year_of_birth, month_of_birth, date_of_birth, hin,
+ ver, roster_status, roster_date, roster_termination_date,
+ roster_termination_reason, patient_status, patient_status_date, date_joined,
+ chart_no, official_lang, spoken_lang, provider_no, sex, end_date, eff_date,
+ pcn_indicator, hc_type, hc_renew_date, family_doctor, alias, previousAddress,
+ children, sourceOfIncome, citizenship, sin, country_of_origin, newsletter,
+ anonymous, lastUpdateUser, lastUpdateDate
+)
+VALUES
+--
+-- Patient Name: One Demopatient
+-- Description: CareConnect Demo Patient
+(
+ '','DEMOPATIENT','ONE','','','BC','','',
+ '','',NULL,'1969','01','12','9698713709',
+ '','',NULL,NULL,
+ '','AC','2013-09-25','2013-09-25',
+ '','English','','999998','F',NULL,NULL,
+ NULL,'BC',NULL,'<rdohip></rdohip><rd></rd>',NULL,NULL,
+ NULL,NULL,NULL,'','-1','Unknown',
+ NULL,'999998','2013-09-26 00:00:00'
+);
+-- Admission
+INSERT INTO `admission` (`client_id`, `program_id`, `provider_no`, `admission_date`, `admission_from_transfer`, `admission_notes`, `temp_admission`, `discharge_date`, `discharge_from_transfer`, `discharge_notes`, `temp_admit_discharge`, `admission_status`, `team_id`, `temporary_admission_flag`, `radioDischargeReason`, `clientstatus_id`, `automatic_discharge`, `lastUpdateDate`)
+VALUES
+((select max(demographic_no) from demographic),
+(select id from program where name='OSCAR'),'999998','2013-09-26 00:00:00',0,'',NULL,NULL,0,NULL,NULL,'current',NULL,0,NULL,NULL,0,'2013-09-26 00:00:00');
+-- Medications
+INSERT INTO `drugs`
+(`provider_no`, `demographic_no`, `rx_date`, `end_date`, `written_date`, `pickup_datetime`, `BN`, `GCN_SEQNO`, `customName`, `takemin`, `takemax`, `freqcode`, `duration`, `durunit`, `quantity`, `repeat`, `last_refill_date`, `nosubs`, `prn`, `special`, `special_instruction`, `archived`, `GN`, `ATC`, `script_no`, `regional_identifier`, `unit`, `method`, `route`, `drug_form`, `create_date`, `dosage`, `custom_instructions`, `unitName`, `custom_note`, `long_term`, `non_authoritative`, `past_med`, `patient_compliance`, `outside_provider_name`, `outside_provider_ohip`, `archived_reason`, `archived_date`, `hide_from_drug_profile`, `eTreatmentType`, `rxStatus`, `dispense_interval`, `refill_duration`, `refill_quantity`, `hide_cpp`, `position`, `comment`, `start_date_unknown`, `lastUpdateDate`, `dispenseInternal`)
+VALUES
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'VENTOLIN HFA 100?G',9667,NULL,1,2,'BID','4','W','112',1,NULL,0,1,'VENTOLIN HFA 100?G\nTake 1-2 INH BID prn 4 w\nQty:112 Repeats:1',NULL,0,'SALBUTAMOL (SALBUTAMOL SULFATE)','R03AC02',8,'02241497','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','100.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,1,NULL,0,'2013-09-27 13:55:26',0),
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'QVAR 100?G',9783,NULL,2,2,'BID','4','W','112',1,NULL,0,0,'QVAR 100?G\nTake 2 INH BID 4 w\nQty:112 Repeats:1',NULL,0,'BECLOMETHASONE DIPROPIONATE','R03BA01',8,'02242030','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','100.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,2,NULL,0,'2013-09-27 13:55:26',0),
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'ATROVENT HFA 20?G',9338,NULL,1,1,'TID','4','W','84',1,NULL,0,0,'ATROVENT HFA 20?G\nTake 1 INH TID 4 w\nQty:84 Repeats:1',NULL,0,'IPRATROPIUM BROMIDE','R03BB01',8,'02247686','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','20.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,3,NULL,0,'2013-09-27 13:55:26',0);
+-- Problem List
+INSERT INTO `dxresearch`
+(demographic_no,
+ start_date, update_date, status, dxresearch_code, coding_system, association, providerNo)
+VALUES
+((select max(demographic_no) from demographic),
+ '2013-09-26','2013-09-26 00:00:00','A','3051','icd9',0,NULL),
+((select max(demographic_no) from demographic),
+ '2013-09-26','2013-09-26 00:00:00','A','303','icd9',0,NULL);
+
+-- 12
+INSERT INTO `demographic`
+(
+ title, last_name, first_name, address, city, province, postal, phone, phone2,
+ email, myOscarUserName, year_of_birth, month_of_birth, date_of_birth, hin,
+ ver, roster_status, roster_date, roster_termination_date,
+ roster_termination_reason, patient_status, patient_status_date, date_joined,
+ chart_no, official_lang, spoken_lang, provider_no, sex, end_date, eff_date,
+ pcn_indicator, hc_type, hc_renew_date, family_doctor, alias, previousAddress,
+ children, sourceOfIncome, citizenship, sin, country_of_origin, newsletter,
+ anonymous, lastUpdateUser, lastUpdateDate
+)
+VALUES
+--
+-- Patient Name: Two Demopatient
+-- Description: CareConnect Demo Patient
+(
+ '','DEMOPATIENT','TWO','','','BC','','',
+ '','',NULL,'1957','10','01','9698713676',
+ '','',NULL,NULL,
+ '','AC','2013-09-25','2013-09-25',
+ '','English','','999998','F',NULL,NULL,
+ NULL,'BC',NULL,'<rdohip></rdohip><rd></rd>',NULL,NULL,
+ NULL,NULL,NULL,'','-1','Unknown',
+ NULL,'999998','2013-09-26 00:00:00'
+);
+-- Admission
+INSERT INTO `admission` (`client_id`, `program_id`, `provider_no`, `admission_date`, `admission_from_transfer`, `admission_notes`, `temp_admission`, `discharge_date`, `discharge_from_transfer`, `discharge_notes`, `temp_admit_discharge`, `admission_status`, `team_id`, `temporary_admission_flag`, `radioDischargeReason`, `clientstatus_id`, `automatic_discharge`, `lastUpdateDate`)
+VALUES
+((select max(demographic_no) from demographic),
+(select id from program where name='OSCAR'),'999998','2013-09-26 00:00:00',0,'',NULL,NULL,0,NULL,NULL,'current',NULL,0,NULL,NULL,0,'2013-09-26 00:00:00');
+-- Medications
+INSERT INTO `drugs`
+(`provider_no`, `demographic_no`, `rx_date`, `end_date`, `written_date`, `pickup_datetime`, `BN`, `GCN_SEQNO`, `customName`, `takemin`, `takemax`, `freqcode`, `duration`, `durunit`, `quantity`, `repeat`, `last_refill_date`, `nosubs`, `prn`, `special`, `special_instruction`, `archived`, `GN`, `ATC`, `script_no`, `regional_identifier`, `unit`, `method`, `route`, `drug_form`, `create_date`, `dosage`, `custom_instructions`, `unitName`, `custom_note`, `long_term`, `non_authoritative`, `past_med`, `patient_compliance`, `outside_provider_name`, `outside_provider_ohip`, `archived_reason`, `archived_date`, `hide_from_drug_profile`, `eTreatmentType`, `rxStatus`, `dispense_interval`, `refill_duration`, `refill_quantity`, `hide_cpp`, `position`, `comment`, `start_date_unknown`, `lastUpdateDate`, `dispenseInternal`)
+VALUES
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'VENTOLIN HFA 100?G',9667,NULL,1,2,'BID','4','W','112',1,NULL,0,1,'VENTOLIN HFA 100?G\nTake 1-2 INH BID prn 4 w\nQty:112 Repeats:1',NULL,0,'SALBUTAMOL (SALBUTAMOL SULFATE)','R03AC02',8,'02241497','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','100.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,1,NULL,0,'2013-09-27 13:55:26',0),
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'QVAR 100?G',9783,NULL,2,2,'BID','4','W','112',1,NULL,0,0,'QVAR 100?G\nTake 2 INH BID 4 w\nQty:112 Repeats:1',NULL,0,'BECLOMETHASONE DIPROPIONATE','R03BA01',8,'02242030','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','100.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,2,NULL,0,'2013-09-27 13:55:26',0),
+('999998',
+(select max(demographic_no) from demographic),
+'2013-09-27','2013-11-22','2013-09-27',NULL,'ATROVENT HFA 20?G',9338,NULL,1,1,'TID','4','W','84',1,NULL,0,0,'ATROVENT HFA 20?G\nTake 1 INH TID 4 w\nQty:84 Repeats:1',NULL,0,'IPRATROPIUM BROMIDE','R03BB01',8,'02247686','µG','Take','INH','METERED-DOSE AEROSOL','2013-09-27 13:55:26','20.0 µG',0,NULL,0,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,3,NULL,0,'2013-09-27 13:55:26',0);
+-- Problem List
+INSERT INTO `dxresearch`
+(demographic_no,
+ start_date, update_date, status, dxresearch_code, coding_system, association, providerNo)
+VALUES
+((select max(demographic_no) from demographic),
+ '2013-09-26','2013-09-26 00:00:00','A','3051','icd9',0,NULL),
+((select max(demographic_no) from demographic),
+ '2013-09-26','2013-09-26 00:00:00','A','303','icd9',0,NULL);
