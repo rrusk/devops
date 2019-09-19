@@ -2210,13 +2210,13 @@ INSERT INTO `demographic`
 VALUES
 --
 -- Patient Name: One Demopatient
--- Description: CareConnect Demo Patient
+-- Description: Male CareConnect Demo Patient
 (
  '','DEMOPATIENT','ONE','','','BC','','',
  '','',NULL,'1969','01','12','9698713709',
  '','',NULL,NULL,
  '','AC','2013-09-25','2013-09-25',
- '','English','','999998','F',NULL,NULL,
+ '','English','','999998','M',NULL,NULL,
  NULL,'BC',NULL,'<rdohip></rdohip><rd></rd>',NULL,NULL,
  NULL,NULL,NULL,'','-1','Unknown',
  NULL,'999998','2013-09-26 00:00:00'
@@ -2264,7 +2264,7 @@ INSERT INTO `demographic`
 VALUES
 --
 -- Patient Name: Two Demopatient
--- Description: CareConnect Demo Patient
+-- Description: Female CareConnect Demo Patient
 (
  '','DEMOPATIENT','TWO','','','BC','','',
  '','',NULL,'1957','10','01','9698713676',
